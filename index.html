@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCSR VLOGS</title>
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/holiday-trip" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" />
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Holiday Trip', sans-serif;
+      background: #f2f2f2;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background: linear-gradient(120deg, #8e2de2, #4a00e0);
+      color: white;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .tabs button {
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      background-color: #e0e0e0;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Holiday Trip', sans-serif;
+    }
+    .tabs button.active, .tabs button:hover {
+      background-color: #4a00e0;
+      color: white;
+    }
+    .section {
+      display: none;
+      max-width: 1100px;
+      width: 100%;
+      margin: 3rem auto;
+      padding: 1rem;
+      animation: fadeIn 1s ease;
+      flex-grow: 1;
+    }
+    .section.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .vlog-card {
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .vlog-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+    .vlog-card-content {
+      padding: 1.2rem;
+    }
+    .vlog-card h3 {
+      font-size: 1.4rem;
+      margin: 0 0 0.7rem;
+    }
+    .vlog-card a {
+      text-decoration: none;
+      color: #4a00e0;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+      background: #4a00e0;
+      color: white;
+      font-family: 'Great Vibes', cursive;
+      line-height: 1.5;
+      margin-top: auto;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .vlog-card h3 {
+        font-size: 1.2rem;
+      }
+      .vlog-card a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UCSR VLOGS</h1>
+    <p>Spiritual Steps, Adventurous Miles</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('devotional')">Devotional</button>
+    <button class="tab-btn" onclick="showTab('adventure')">Adventure</button>
+  </div>
+
+  <div id="devotional" class="section active">
+    <div class="vlog-card">
+      <div class="vlog-card-content">
+        <h3>Lakshmi Narasimha Swamy Temple</h3>
+        <a href="https://www.playbook.com/s/uma-chandra/mT7v7vfD2AfjNpE6n1cN1Maa?assetToken=NyYHWz16NzxJnQNeCLrXv4tc" target="_blank">▶ Watch Now</a>
+      </div>
+    </div>
+    <div class="vlog-card">
+      <div class="vlog-card-content">
+        <h3>Vijayawada Durga Devi Temple</h3>
+        <a href="https://www.playbook.com/s/uma-chandra/9APkcC1mD64zrb7PwRsfzamN?assetToken=13kg1p21jNYkLjE1iarHcSpj" target="_blank">▶ Watch Now</a>
+      </div>
+    </div>
+    <div class="vlog-card">
+      <div class="vlog-card-content">
+        <h3>Tirupati Vlog</h3>
+        <a href="https://www.playbook.com/s/uma-chandra/igQfDZD9PpsGSAipyW6g6fJB?assetToken=sHsJVAL93uCPy6fyvXA9W9Mc" target="_blank">▶ Watch Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="adventure" class="section">
+    <div class="vlog-card">
+      <div class="vlog-card-content">
+        <h3>Kondaveedu Vlog</h3>
+        <a href="https://www.playbook.com/s/uma-chandra/5rbGYagzyMKSkpWH7cbabPG6?assetToken=zWRiByAQYcL41x4v4jCSwuNv" target="_blank">▶ Watch Now</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Uma Chandra<br />
+    Estd. 2005
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+  </script>
+</body>
+</html>
