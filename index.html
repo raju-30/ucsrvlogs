@@ -14,8 +14,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Holiday Trip', sans-serif;
-      background: #f2f2f2;
-      color: #333;
+      background: #121212;
+      color: #e0e0e0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -23,8 +23,9 @@
     header {
       text-align: center;
       padding: 2rem 1rem 1rem;
-      background: linear-gradient(120deg, #8e2de2, #4a00e0);
+      background: linear-gradient(120deg, #ff416c, #8e2de2);
       color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     }
     header h1 {
       margin: 0;
@@ -40,21 +41,23 @@
       display: flex;
       justify-content: center;
       margin: 2rem 0;
-      gap: 2rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
     .tabs button {
       padding: 0.8rem 2rem;
       border: none;
       border-radius: 30px;
-      background-color: #e0e0e0;
+      background-color: #2c2c2c;
       font-size: 1rem;
       cursor: pointer;
       transition: 0.3s;
+      color: #f5f5f5;
       font-family: 'Holiday Trip', sans-serif;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .tabs button.active, .tabs button:hover {
-      background-color: #4a00e0;
+      background: linear-gradient(120deg, #ff416c, #8e2de2);
       color: white;
     }
     .section {
@@ -72,28 +75,33 @@
       gap: 2rem;
     }
     .vlog-card {
-      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .vlog-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
     }
     .vlog-card-content {
-      padding: 1.2rem;
+      padding: 1.5rem;
     }
     .vlog-card h3 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin: 0 0 0.7rem;
+      color: #ff6f91;
     }
     .vlog-card a {
       text-decoration: none;
-      color: #4a00e0;
+      color: #8e2de2;
       font-weight: bold;
       font-size: 1rem;
+      transition: 0.3s;
+    }
+    .vlog-card a:hover {
+      color: #ff416c;
     }
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(30px);}
@@ -103,11 +111,12 @@
       text-align: center;
       padding: 1rem;
       font-size: 1.2rem;
-      background: #4a00e0;
+      background: linear-gradient(120deg, #8e2de2, #4a00e0);
       color: white;
       font-family: 'Great Vibes', cursive;
       line-height: 1.5;
       margin-top: auto;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
     }
     @media (max-width: 600px) {
       header h1 {
@@ -128,14 +137,16 @@
 <body>
   <header>
     <h1>UCSR VLOGS</h1>
-    <p>Spiritual Steps, Adventurous Miles</p>
+    <p>Spiritual Steps, Adventurous Miles & Creative Frames</p>
   </header>
 
   <div class="tabs">
     <button class="tab-btn active" onclick="showTab('devotional')">Devotional</button>
     <button class="tab-btn" onclick="showTab('adventure')">Adventure</button>
+    <button class="tab-btn" onclick="showTab('shortfilms')">Short Films</button>
   </div>
 
+  <!-- Devotional Section -->
   <div id="devotional" class="section active">
     <div class="vlog-card">
       <div class="vlog-card-content">
@@ -157,11 +168,22 @@
     </div>
   </div>
 
+  <!-- Adventure Section -->
   <div id="adventure" class="section">
     <div class="vlog-card">
       <div class="vlog-card-content">
         <h3>Kondaveedu Vlog</h3>
         <a href="https://www.playbook.com/s/uma-chandra/5rbGYagzyMKSkpWH7cbabPG6?assetToken=zWRiByAQYcL41x4v4jCSwuNv" target="_blank">▶ Watch Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Short Films Section -->
+  <div id="shortfilms" class="section">
+    <div class="vlog-card">
+      <div class="vlog-card-content">
+        <h3>SHRAAPIT AMAVASYA</h3>
+        <a href="https://youtu.be/qRxqJ8wgBhk?si=yU2gX_WxiNwMJz2s" target="_blank">▶ Watch Now</a>
       </div>
     </div>
   </div>
