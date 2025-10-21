@@ -118,6 +118,11 @@
       margin-top: auto;
       box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
     }
+    .digits {
+  font-family: 'Arial', sans-serif; /* fallback font for numbers */
+  letter-spacing: 1px;
+}
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2.5rem;
@@ -144,6 +149,7 @@
     <button class="tab-btn active" onclick="showTab('devotional')">Devotional</button>
     <button class="tab-btn" onclick="showTab('adventure')">Adventure</button>
     <button class="tab-btn" onclick="showTab('shortfilms')">Short Films</button>
+    <button class="tab-btn" onclick="showTab('timepass')">Timepass</button>
   </div>
 
   <!-- Devotional Section -->
@@ -187,6 +193,17 @@
       </div>
     </div>
   </div>
+
+  <!-- Timepass Section -->
+ <div id="timepass" class="section">
+  <div class="vlog-card">
+    <div class="vlog-card-content">
+      <h3>DIWALI <span class="digits">2K25</span></h3>
+      <a href="https://youtu.be/71CNhPwmbco?si=ismLZBUmlumpFE_3" target="_blank">▶ Watch Now</a>
+    </div>
+  </div>
+</div>
+
 
   <footer>
     Uma Chandra<br />
