@@ -1,0 +1,318 @@
+/* Watch Page Specific Stylesheet */
+
+.watch-container {
+  padding: 100px 4% 60px 4%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Page Header Back Button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+  color: var(--accent-color);
+  transform: translateX(-4px);
+}
+
+/* Video Player Simulator Details Layout */
+.watch-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* Player Simulator Area */
+.player-simulator {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #050505;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.player-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+.player-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(15,15,15,0.7) 100%),
+              linear-gradient(to top, rgba(15,15,15,0.9) 0%, transparent 40%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+
+.player-play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 8px 30px var(--accent-glow);
+  transition: var(--transition-smooth);
+  z-index: 3;
+}
+
+.player-play-btn i {
+  margin-left: 6px;
+}
+
+.player-simulator:hover .player-play-btn {
+  transform: scale(1.15);
+  box-shadow: 0 8px 35px var(--accent-hover);
+}
+
+.player-simulator:hover .player-poster {
+  transform: scale(1.03);
+}
+
+.player-simulator:hover .player-overlay {
+  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(15,15,15,0.6) 100%);
+}
+
+/* Video Information Panel */
+.watch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-series-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.video-detail-title {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.video-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.meta-badge {
+  background-color: rgba(255,255,255,0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.video-detail-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.watch-actions {
+  margin-top: auto;
+}
+
+/* Episode Section */
+.episodes-section {
+  margin-bottom: 50px;
+  background-color: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.episodes-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.episodes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.episode-item {
+  display: grid;
+  grid-template-columns: 80px 140px 1fr 100px;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.episode-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.episode-item.active {
+  background-color: rgba(229, 9, 20, 0.08);
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.15);
+}
+
+.episode-num {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.episode-item.active .episode-num {
+  color: var(--accent-color);
+}
+
+.episode-thumbnail {
+  width: 140px;
+  height: 79px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.episode-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.episode-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 18px;
+  opacity: 0;
+  transition: var(--transition-fast);
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+.episode-item:hover .episode-play-icon {
+  opacity: 1;
+}
+
+.episode-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.episode-duration {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+/* Recommendations Grids */
+.recommendations-section {
+  margin-bottom: 50px;
+}
+
+.recommendations-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px 20px;
+}
+
+/* Responsiveness overrides for Watch page */
+@media (max-width: 1024px) {
+  .watch-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .watch-container {
+    padding: 85px 5% 40px 5%;
+  }
+
+  .video-detail-title {
+    font-size: 26px;
+  }
+
+  .episode-item {
+    grid-template-columns: 40px 90px 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .episode-thumbnail {
+    width: 90px;
+    height: 51px;
+  }
+
+  .episode-duration {
+    grid-column: 3;
+    justify-content: flex-start;
+    text-align: left;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  .episode-title {
+    font-size: 13px;
+  }
+
+  .episodes-section {
+    padding: 15px;
+  }
+}

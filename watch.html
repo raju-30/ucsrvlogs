@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UCSR Vlogs</title>
+  <title>Watch Vlog - UCSR Vlogs</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="watch.css">
   <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
@@ -24,11 +25,11 @@
         <i class="fas fa-play-circle"></i>UCSR<span> Vlogs</span>
       </a>
       <ul class="nav-menu">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#devotional-section">Devotional</a></li>
-        <li><a href="#adventure-section">Adventure</a></li>
-        <li><a href="#short-films-section">Short Films</a></li>
-        <li><a href="#timepass-section">Timepass</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#devotional-section">Devotional</a></li>
+        <li><a href="index.html#adventure-section">Adventure</a></li>
+        <li><a href="index.html#short-films-section">Short Films</a></li>
+        <li><a href="index.html#timepass-section">Timepass</a></li>
       </ul>
     </div>
     <div class="nav-actions">
@@ -43,49 +44,54 @@
     </div>
   </header>
 
-  <!-- Cinematic Hero Banner (Most Viewed / Featured) -->
-  <section class="hero" id="hero-section">
-    <!-- Hydrated dynamically from app.js -->
-  </section>
-
-  <!-- Main OTT Sliders Grid -->
-  <main class="main-content">
+  <!-- Watch Page Content Wrapper -->
+  <main class="watch-container">
     
-    <!-- Newly Uploaded Row -->
-    <section class="category-row fade-in-section" id="newly-uploaded-section">
-      <!-- Hydrated from app.js -->
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Browse
+    </a>
+
+    <!-- Main Detail Section -->
+    <div class="watch-grid">
+      <!-- Player Simulator Container (Hydrated from watch.js) -->
+      <div id="player-container">
+        <!-- Hydrated dynamically -->
+      </div>
+
+      <!-- Description & Information Panel (Hydrated from watch.js) -->
+      <div id="details-container">
+        <!-- Hydrated dynamically -->
+      </div>
+    </div>
+
+    <!-- Episode Checklist Block (Visible only for series) -->
+    <section class="episodes-section" id="episodes-section" style="display: none;">
+      <h3 class="episodes-title"><i class="fas fa-list-ol"></i> Episodes in this Series</h3>
+      <div class="episodes-list" id="episodes-list">
+        <!-- Hydrated dynamically -->
+      </div>
     </section>
 
-    <!-- Most Watched Row -->
-    <section class="category-row fade-in-section" id="most-watched-section">
-      <!-- Hydrated from app.js -->
+    <!-- More Like This Recommendation Section -->
+    <section class="recommendations-section" id="more-like-this-section">
+      <h3 class="recommendations-title">More Like This</h3>
+      <div class="recommendations-grid" id="more-like-this-grid">
+        <!-- Hydrated dynamically -->
+      </div>
     </section>
 
-    <!-- Devotional Row -->
-    <section class="category-row fade-in-section" id="devotional-section">
-      <!-- Hydrated from app.js -->
+    <!-- Watch More (Randomised from other categories) Recommendation Section -->
+    <section class="recommendations-section" id="watch-more-section">
+      <h3 class="recommendations-title">Watch More</h3>
+      <div class="recommendations-grid" id="watch-more-grid">
+        <!-- Hydrated dynamically -->
+      </div>
     </section>
-
-    <!-- Adventure Row -->
-    <section class="category-row fade-in-section" id="adventure-section">
-      <!-- Hydrated from app.js -->
-    </section>
-
-    <!-- Short Films Row -->
-    <section class="category-row fade-in-section" id="short-films-section">
-      <!-- Hydrated from app.js -->
-    </section>
-
-    <!-- Timepass Row -->
-    <section class="category-row fade-in-section" id="timepass-section">
-      <!-- Hydrated from app.js -->
-    </section>
-
-
 
   </main>
 
-  <!-- Live Search Overlay -->
+  <!-- Live Search Overlay (Directs searching keywords) -->
   <div class="search-overlay" id="search-overlay">
     <div class="search-header">
       <div class="search-input-wrapper">
@@ -114,8 +120,7 @@
   <!-- Script Modules -->
   <script src="videos.js"></script>
   <script src="newly_uploaded.js"></script>
-  <script src="slider.js"></script>
   <script src="search.js"></script>
-  <script src="app.js"></script>
+  <script src="watch.js"></script>
 </body>
 </html>

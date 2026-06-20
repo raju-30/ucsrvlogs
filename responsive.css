@@ -1,0 +1,261 @@
+/* Responsive Stylesheet */
+
+/* Grid card adjustments for responsiveness on all screen sizes */
+.search-results-grid,
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px 15px;
+}
+
+.search-results-grid .video-card,
+.recommendations-grid .video-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --card-width: 240px;
+    --card-height: 135px;
+  }
+
+  .hero {
+    height: 75vh;
+  }
+
+  .hero-title {
+    font-size: 44px;
+  }
+
+  .hero-content {
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --card-width: 190px;
+    --card-height: 107px;
+  }
+
+  header {
+    height: 60px;
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  /* Hamburger Menu implementation */
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu li a {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  /* Animate Hamburger spans when active */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Hero Adjustments */
+  .hero {
+    min-height: 460px;
+    height: auto;
+    padding: 90px 5% 40px 5%;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg img {
+    object-position: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-top: 50px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 20px;
+    -webkit-line-clamp: 2;
+  }
+
+  .hero-badge {
+    margin-bottom: 12px;
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* Categories & Rows spacing */
+  .main-content {
+    padding: 20px 0 60px 0;
+  }
+
+  .category-row {
+    margin-bottom: 25px;
+    padding: 0 5%;
+  }
+
+  .category-title {
+    font-size: 18px;
+  }
+
+  .slider-container-wrapper {
+    margin: 0 -15px;
+    padding: 0 15px;
+  }
+
+  .slider-container {
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .slider-arrow {
+    display: none !important; /* Hide scroll buttons on touch screens as touch swipe is native */
+  }
+
+  /* Search & Recommendation Grids Adjustments */
+  .search-overlay {
+    padding: 80px 5% 20px 5%;
+  }
+
+  .search-input {
+    font-size: 18px;
+  }
+
+  .search-results-grid,
+  .recommendations-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px 10px;
+  }
+
+  .player-play-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  /* Footer Adjustments */
+  footer {
+    padding: 40px 5% 20px 5%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-width: 150px;
+    --card-height: 84px;
+  }
+
+  .hero {
+    min-height: 380px;
+    height: auto;
+    padding: 85px 5% 30px 5%;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  /* Smaller Hover Overlays inside cards on mobile to avoid overflow */
+  .card-title {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .card-meta {
+    font-size: 9px;
+    gap: 6px;
+  }
+
+  .card-meta-category {
+    font-size: 8px;
+  }
+
+  .card-play-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .card-badge {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+
+  /* Exact 2 column grids for search and recommendations on mobile */
+  .search-results-grid,
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 10px;
+  }
+
+  .player-play-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+}
