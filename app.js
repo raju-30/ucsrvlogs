@@ -80,14 +80,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Helper: Extract YouTube video ID
+  const getYoutubeId = (url) => {
+    if (!url) return '';
+    let id = '';
+    if (url.includes('youtu.be/')) {
+      id = url.split('youtu.be/')[1].split('?')[0];
+    } else if (url.includes('v=')) {
+      id = url.split('v=')[1].split('&')[0];
+    } else if (url.includes('embed/')) {
+      id = url.split('embed/')[1].split('?')[0];
+    }
+    return id;
+  };
+
   // Load Hero Banner (Featured Video)
   const heroSection = document.getElementById('hero-section');
   if (heroSection) {
     const featuredVideo = videos.find(v => v.featured) || videos[0];
     if (featuredVideo) {
+      const isYoutube = featuredVideo.youtube && (featuredVideo.youtube.includes('youtube.com') || featuredVideo.youtube.includes('youtu.be'));
+      const ytId = isYoutube ? getYoutubeId(featuredVideo.youtube) : '';
+      
+      const heroBgHTML = isYoutube
+        ? `<iframe 
+            src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=0&showinfo=0&rel=0&enablejsapi=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen
+            style="width: 100%; height: 100%; object-fit: cover; border: none; transform: scale(1.15); pointer-events: none;">
+           </iframe>`
+        : `<img src="${featuredVideo.thumbnail}" alt="${featuredVideo.title}">`;
+
       heroSection.innerHTML = `
         <div class="hero-bg">
-          <img src="${featuredVideo.thumbnail}" alt="${featuredVideo.title}">
+          ${heroBgHTML}
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -120,25 +147,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Helper: Card Generator
   const generateCardHTML = (video) => {
-    const badgeText = video.episode ? `E${video.episode}` : '';
-    const badgeHTML = badgeText ? `<span class="card-badge">${badgeText}</span>` : '';
+    const isUploadingSoon = video.views === 'Uploading Soon';
+    const badgeText = isUploadingSoon ? 'Soon' : (video.episode ? `E${video.episode}` : '');
+    const badgeHTML = badgeText ? `<span class="card-badge" style="${isUploadingSoon ? 'background-color: #f39c12;' : ''}">${badgeText}</span>` : '';
+    const playBtnHTML = isUploadingSoon ? '<i class="fas fa-clock"></i>' : '<i class="fas fa-play"></i>';
+    const viewsHTML = isUploadingSoon 
+      ? `<span><i class="fas fa-clock"></i> Uploading Soon</span>`
+      : `<span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>`;
+    const durationHTML = (isUploadingSoon || !video.duration)
+      ? ''
+      : `<span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>`;
     
     return `
-      <div class="video-card" onclick="location.href='watch.html?id=${video.id}'">
+      <div class="video-card ${isUploadingSoon ? 'soon-card' : ''}" onclick="location.href='watch.html?id=${video.id}'">
         <div class="video-card-inner">
           <div class="card-img-wrapper">
             <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
           </div>
           <div class="card-play-btn">
-            <i class="fas fa-play"></i>
+            ${playBtnHTML}
           </div>
           ${badgeHTML}
           <div class="card-info-overlay">
             <h3 class="card-title">${video.title}</h3>
             <div class="card-meta">
               <span class="card-meta-category">${video.category}</span>
-              <span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>
-              <span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>
+              ${viewsHTML}
+              ${durationHTML}
             </div>
           </div>
         </div>
@@ -195,6 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Timepass
   const timepass = videos.filter(v => v.category === 'Timepass');
   renderRow('timepass-section', 'Timepass', '', timepass);
+
+  // 6. Uploading Soon
+  const uploadingSoon = videos.filter(v => v.views === 'Uploading Soon');
+  renderRow('uploading-soon-section', 'Uploading Soon', '', uploadingSoon);
 
   // Initialize Sliders Scroll controls
   if (typeof window.initSliders === 'function') {

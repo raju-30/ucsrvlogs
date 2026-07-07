@@ -64,23 +64,69 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update Page Title
   document.title = `${currentVideo.title} - Watch Vlog | UCSR Vlogs`;
 
+  // Helper: Extract YouTube video ID
+  const getYoutubeId = (url) => {
+    if (!url) return '';
+    let id = '';
+    if (url.includes('youtu.be/')) {
+      id = url.split('youtu.be/')[1].split('?')[0];
+    } else if (url.includes('v=')) {
+      id = url.split('v=')[1].split('&')[0];
+    } else if (url.includes('embed/')) {
+      id = url.split('embed/')[1].split('?')[0];
+    }
+    return id;
+  };
+
   // Hydrate Player Simulator
   const playerContainer = document.getElementById('player-container');
+  const isUploadingSoon = currentVideo.views === 'Uploading Soon';
+
   if (playerContainer) {
-    playerContainer.innerHTML = `
-      <div class="player-simulator" id="play-trigger">
-        <img src="${currentVideo.thumbnail}" alt="${currentVideo.title}" class="player-poster">
-        <div class="player-overlay">
-          <div class="player-play-btn">
-            <i class="fas fa-play"></i>
+    if (isUploadingSoon) {
+      playerContainer.innerHTML = `
+        <div class="player-simulator soon-player" id="play-trigger" style="cursor: default;">
+          <img src="${currentVideo.thumbnail}" alt="${currentVideo.title}" class="player-poster">
+          <div class="player-overlay">
+            <div class="player-status-badge">
+              <i class="fas fa-clock"></i> Uploading Soon
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+    } else {
+      const isYoutube = currentVideo.youtube && (currentVideo.youtube.includes('youtube.com') || currentVideo.youtube.includes('youtu.be'));
+      
+      if (isYoutube) {
+        const ytId = getYoutubeId(currentVideo.youtube);
+        playerContainer.innerHTML = `
+          <iframe 
+            src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1" 
+            title="${currentVideo.title}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            style="width: 100%; height: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          </iframe>
+        `;
+      } else {
+        // Playbook links: display simulator and do not autoplay
+        playerContainer.innerHTML = `
+          <div class="player-simulator" id="play-trigger">
+            <img src="${currentVideo.thumbnail}" alt="${currentVideo.title}" class="player-poster">
+            <div class="player-overlay">
+              <div class="player-play-btn">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+          </div>
+        `;
 
-    document.getElementById('play-trigger').addEventListener('click', () => {
-      window.open(currentVideo.youtube, '_blank');
-    });
+        document.getElementById('play-trigger').addEventListener('click', () => {
+          window.open(currentVideo.youtube, '_blank');
+        });
+      }
+    }
   }
 
   // Hydrate Details Information
@@ -94,6 +140,24 @@ document.addEventListener('DOMContentLoaded', () => {
       ? `<span class="meta-badge">Episode ${currentVideo.episode} of ${currentVideo.totalEpisodes}</span>`
       : '';
 
+    const viewsHTML = isUploadingSoon
+      ? `<span><i class="fas fa-clock"></i> Uploading Soon</span>`
+      : `<span><i class="far fa-eye"></i> ${currentVideo.views} views</span>`;
+
+    const durationHTML = (isUploadingSoon || !currentVideo.duration)
+      ? ''
+      : `<span><i class="far fa-clock"></i> ${currentVideo.duration}</span>`;
+
+    const isYoutube = currentVideo.youtube && (currentVideo.youtube.includes('youtube.com') || currentVideo.youtube.includes('youtu.be'));
+
+    const watchButtonHTML = isUploadingSoon
+      ? `<button class="btn btn-secondary" id="watch-now-btn" style="padding: 14px 35px; font-size: 16px; opacity: 0.6; cursor: not-allowed;" disabled>
+           <i class="fas fa-clock"></i> Uploading Soon
+         </button>`
+      : `<button class="btn btn-primary" id="watch-now-btn" style="padding: 14px 35px; font-size: 16px;">
+           <i class="fas ${isYoutube ? 'fa-external-link-alt' : 'fa-play'}"></i> Watch on ${isYoutube ? 'YouTube' : 'Playbook'}
+         </button>`;
+
     detailsContainer.innerHTML = `
       <div class="watch-info">
         ${seriesLabel}
@@ -101,22 +165,22 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="video-detail-meta">
           <span class="meta-badge">${currentVideo.category}</span>
           ${episodeBadge}
-          <span><i class="far fa-eye"></i> ${currentVideo.views} views</span>
-          <span><i class="far fa-clock"></i> ${currentVideo.duration}</span>
+          ${viewsHTML}
+          ${durationHTML}
           <span><i class="far fa-calendar-alt"></i> ${currentVideo.dateAdded}</span>
         </div>
         <p class="video-detail-desc">${currentVideo.description}</p>
         <div class="watch-actions">
-          <button class="btn btn-primary" id="watch-now-btn" style="padding: 14px 35px; font-size: 16px;">
-            <i class="fas fa-external-link-alt"></i> Watch on YouTube
-          </button>
+          ${watchButtonHTML}
         </div>
       </div>
     `;
 
-    document.getElementById('watch-now-btn').addEventListener('click', () => {
-      window.open(currentVideo.youtube, '_blank');
-    });
+    if (!isUploadingSoon) {
+      document.getElementById('watch-now-btn').addEventListener('click', () => {
+        window.open(currentVideo.youtube, '_blank');
+      });
+    }
   }
 
   // Hydrate Episodes List if series is present
@@ -158,25 +222,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Generate Card HTML helper for recommendations
   const generateCardHTML = (video) => {
-    const badgeText = video.episode ? `E${video.episode}` : '';
-    const badgeHTML = badgeText ? `<span class="card-badge">${badgeText}</span>` : '';
+    const isUploadingSoon = video.views === 'Uploading Soon';
+    const badgeText = isUploadingSoon ? 'Soon' : (video.episode ? `E${video.episode}` : '');
+    const badgeHTML = badgeText ? `<span class="card-badge" style="${isUploadingSoon ? 'background-color: #f39c12;' : ''}">${badgeText}</span>` : '';
+    const playBtnHTML = isUploadingSoon ? '<i class="fas fa-clock"></i>' : '<i class="fas fa-play"></i>';
+    const viewsHTML = isUploadingSoon 
+      ? `<span><i class="fas fa-clock"></i> Uploading Soon</span>`
+      : `<span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>`;
+    const durationHTML = (isUploadingSoon || !video.duration)
+      ? ''
+      : `<span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>`;
     
     return `
-      <div class="video-card" onclick="location.href='watch.html?id=${video.id}'">
+      <div class="video-card ${isUploadingSoon ? 'soon-card' : ''}" onclick="location.href='watch.html?id=${video.id}'">
         <div class="video-card-inner">
           <div class="card-img-wrapper">
             <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
           </div>
           <div class="card-play-btn">
-            <i class="fas fa-play"></i>
+            ${playBtnHTML}
           </div>
           ${badgeHTML}
           <div class="card-info-overlay">
             <h3 class="card-title">${video.title}</h3>
             <div class="card-meta">
               <span class="card-meta-category">${video.category}</span>
-              <span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>
-              <span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>
+              ${viewsHTML}
+              ${durationHTML}
             </div>
           </div>
         </div>

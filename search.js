@@ -34,26 +34,33 @@ function initSearch() {
 
   // Helper function to build a video card HTML string
   const createVideoCardHTML = (video) => {
-    const episodeBadge = video.episode 
-      ? `<span class="card-badge">E${video.episode}/${video.totalEpisodes || ''}</span>`
-      : '';
+    const isUploadingSoon = video.views === 'Uploading Soon';
+    const badgeText = isUploadingSoon ? 'Soon' : (video.episode ? `E${video.episode}/${video.totalEpisodes || ''}` : '');
+    const badgeHTML = badgeText ? `<span class="card-badge" style="${isUploadingSoon ? 'background-color: #f39c12;' : ''}">${badgeText}</span>` : '';
+    const playBtnHTML = isUploadingSoon ? '<i class="fas fa-clock"></i>' : '<i class="fas fa-play"></i>';
+    const viewsHTML = isUploadingSoon 
+      ? `<span><i class="fas fa-clock"></i> Uploading Soon</span>`
+      : `<span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>`;
+    const durationHTML = (isUploadingSoon || !video.duration)
+      ? ''
+      : `<span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>`;
     
     return `
-      <div class="video-card" onclick="location.href='watch.html?id=${video.id}'">
+      <div class="video-card ${isUploadingSoon ? 'soon-card' : ''}" onclick="location.href='watch.html?id=${video.id}'">
         <div class="video-card-inner">
           <div class="card-img-wrapper">
             <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
           </div>
           <div class="card-play-btn">
-            <i class="fas fa-play"></i>
+            ${playBtnHTML}
           </div>
-          ${episodeBadge}
+          ${badgeHTML}
           <div class="card-info-overlay">
             <h3 class="card-title">${video.title}</h3>
             <div class="card-meta">
               <span class="card-meta-category">${video.category}</span>
-              <span class="card-meta-views"><i class="far fa-eye"></i> ${video.views}</span>
-              <span class="card-meta-duration"><i class="far fa-clock"></i> ${video.duration}</span>
+              ${viewsHTML}
+              ${durationHTML}
             </div>
           </div>
         </div>

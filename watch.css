@@ -316,3 +316,44 @@
     padding: 15px;
   }
 }
+
+/* Uploading Soon Styling */
+.player-status-badge {
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  animation: pulseBadge 2.0s infinite alternate;
+  z-index: 5;
+  text-transform: uppercase;
+}
+
+@keyframes pulseBadge {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.2);
+    border-color: rgba(229, 9, 20, 0.4);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 25px rgba(229, 9, 20, 0.7);
+    border-color: var(--accent-color);
+  }
+}
+
+.soon-player:hover .player-poster {
+  transform: none !important;
+}
+
+.soon-player:hover .player-overlay {
+  background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(15,15,15,0.85) 100%) !important;
+}
+
