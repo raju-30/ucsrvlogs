@@ -96,7 +96,7 @@ episode:1,
 totalEpisodes:2,
 featured:true,
 mostViewed:true,
-views:"172",
+views:"181",
 duration:"33:28",
 thumbnail:"https://res.cloudinary.com/dbo0t5d3t/image/upload/v1781935227/KERALA-THUMBNAIL-1_sdc1ei.png",
 youtube:"https://youtu.be/1wAXxSaaXCQ",
@@ -118,7 +118,7 @@ episode:2,
 totalEpisodes:2,
 featured:false,
 mostViewed:false,
-views:"103",
+views:"105",
 duration:"35:58",
 thumbnail:"https://res.cloudinary.com/dbo0t5d3t/image/upload/v1781935226/KERALA-THUMBNAIL-2_ethwnm.png",
 youtube:"https://youtu.be/7c3cawnp8QY",
@@ -231,22 +231,7 @@ thumbnail:"https://res.cloudinary.com/dbo0t5d3t/image/upload/v1781936041/SHORT_F
 youtube:"https://youtu.be/qRxqJ8wgBhk?si=56q-WWIH5N8Z8Bp-",
 },
 
-{
-id:13,
-title:"THE LEGENDARY UGRA STAMBHAM...",
-category:"Adventure",
-series:"MAHANANDI AND AHOBILAM",
-episode:2,
-totalEpisodes:2,
-featured:false,
-mostViewed:false,
-views:"Uploading Soon",
-duration:"",
-thumbnail:"https://res.cloudinary.com/dbo0t5d3t/image/upload/v1783422332/TREK-AHOBILAM_n49meu.png",
-youtube:"",
-description:`After conquering Kondaveedu on their very first trek, a group of students takes on an even greater challenge—the legendary Ugra Stambham in Ahobilam. As they venture deeper into the rugged Nallamala forests, every step tests their endurance, courage, and friendship. What begins as a second trek transforms into an unforgettable journey of discovery, breathtaking landscapes, and spiritual wonder. More than an adventure, this is the next chapter in their mission to explore the hidden treasures of Ahobilam.`,
-dateAdded:"2026-07-07"
-}
+
 
 ];
 

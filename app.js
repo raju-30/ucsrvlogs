@@ -231,10 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timepass = videos.filter(v => v.category === 'Timepass');
   renderRow('timepass-section', 'Timepass', '', timepass);
 
-  // 6. Uploading Soon
-  const uploadingSoon = videos.filter(v => v.views === 'Uploading Soon');
-  renderRow('uploading-soon-section', 'Uploading Soon', '', uploadingSoon);
-
   // Initialize Sliders Scroll controls
   if (typeof window.initSliders === 'function') {
     window.initSliders();
