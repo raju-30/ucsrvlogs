@@ -25,7 +25,7 @@ const newlyUploadedVideos = [
     totalEpisodes: 2,
     featured: false,
     mostViewed: false,
-    views: "24",
+    views: "32",
     duration: "44:25",
     thumbnail: "https://res.cloudinary.com/dbo0t5d3t/image/upload/v1783422332/TREK-AHOBILAM_n49meu.png",
     youtube: "https://youtu.be/4rvbVtdYRgU?si=U-i-6EHGo3UIG8jc",
