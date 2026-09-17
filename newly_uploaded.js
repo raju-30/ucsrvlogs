@@ -25,12 +25,28 @@ const newlyUploadedVideos = [
     totalEpisodes: 2,
     featured: false,
     mostViewed: false,
-    views: "32",
+    views: "2",
     duration: "44:25",
     thumbnail: "https://res.cloudinary.com/dbo0t5d3t/image/upload/v1783422332/TREK-AHOBILAM_n49meu.png",
     youtube: "https://youtu.be/4rvbVtdYRgU?si=U-i-6EHGo3UIG8jc",
     description: `After conquering Kondaveedu on their very first trek, a group of students takes on an even greater challenge—the legendary Ugra Stambham in Ahobilam. As they venture deeper into the rugged Nallamala forests, every step tests their endurance, courage, and friendship. What begins as a second trek transforms into an unforgettable journey of discovery, breathtaking landscapes, and spiritual wonder. More than an adventure, this is the next chapter in their mission to explore the hidden treasures of Ahobilam.`,
     dateAdded: "2026-07-10"
+  },
+  {
+    id: 14,
+    title: "BANANA JUICE VLOG",
+    category: "Food",
+    series: "FOOD VLOGS",
+    episode: 1,
+    totalEpisodes: 1,
+    featured: false,
+    mostViewed: false,
+    views: "20",
+    duration: "09:00",
+    thumbnail: "https://res.cloudinary.com/dbo0t5d3t/image/upload/v1789656255/BANANA_JUICE_THUBMAAIL_mwtu0k.png",
+    youtube: "https://youtu.be/NQQ7vah3CGM?si=BbZ9h5skIsGH6Cnm",
+    description: `Prapancha yatrikudu into food vlogs`,
+    dateAdded: "2026-09-17"
   }
 ];
 

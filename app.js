@@ -223,11 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const adventure = videos.filter(v => v.category === 'Adventure');
   renderRow('adventure-section', 'Adventure', '', adventure);
 
-  // 4. Short Films
+  // 4. Food
+  const food = videos.filter(v => v.category === 'Food');
+  renderRow('food-section', 'Food', '', food);
+
+  // 5. Short Films
   const shortFilms = videos.filter(v => v.category === 'Short Films');
   renderRow('short-films-section', 'Short Films', '', shortFilms);
 
-  // 5. Timepass
+  // 6. Timepass
   const timepass = videos.filter(v => v.category === 'Timepass');
   renderRow('timepass-section', 'Timepass', '', timepass);
 
