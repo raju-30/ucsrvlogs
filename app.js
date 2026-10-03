@@ -235,6 +235,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const timepass = videos.filter(v => v.category === 'Timepass');
   renderRow('timepass-section', 'Timepass', '', timepass);
 
+  // 7. Reviews
+  const reviews = videos.filter(v => v.category === 'Reviews');
+  renderRow('reviews-section', 'Reviews', '', reviews);
+
+  // Dropdown toggle for mobile/click interaction
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parent = toggle.closest('.nav-dropdown');
+      if (parent) parent.classList.toggle('active');
+    });
+  });
+
   // Initialize Sliders Scroll controls
   if (typeof window.initSliders === 'function') {
     window.initSliders();
